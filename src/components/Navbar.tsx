@@ -36,15 +36,15 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50 border-b border-orange-100">
-      {/* Top Bar */}
-      <div className="bg-orange-600 text-white py-2 px-4">
+      {/* Top Bar - Hidden on mobile */}
+      <div className="bg-orange-600 text-white py-2 px-4 hidden md:block">
         <div className="max-w-6xl mx-auto flex justify-between items-center text-sm">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1">
               <Phone className="w-4 h-4" />
               <span>+49 89 123 456 789</span>
             </div>
-            <div className="hidden sm:flex items-center gap-1">
+            <div className="flex items-center gap-1">
               <MapPin className="w-4 h-4" />
               <span>München & Umgebung</span>
             </div>
@@ -60,29 +60,29 @@ const Navbar = () => {
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 text-2xl font-bold text-orange-600 hover:text-orange-700 transition-colors">
-            <ChefHat className="w-8 h-8" />
+          <Link to="/" className="flex items-center gap-2 text-xl md:text-2xl font-bold text-orange-600 hover:text-orange-700 transition-colors">
+            <ChefHat className="w-6 h-6 md:w-8 md:h-8" />
             <span>FoodHub</span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6">
+          {/* Desktop Navigation - Hidden on mobile */}
+          <div className="hidden lg:flex items-center gap-6">
             <Link to="/" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">
               Restaurants
             </Link>
-            <Link to="/cuisines" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">
-              Küchen
+            <Link to="/search" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">
+              Suchen
             </Link>
-            <Link to="/deals" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">
-              Angebote
+            <Link to="/reservations" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">
+              Reservierungen
             </Link>
             <Link to="/about" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">
               Über uns
             </Link>
           </div>
 
-          {/* User Actions */}
-          <div className="flex items-center gap-3">
+          {/* Desktop User Actions */}
+          <div className="hidden md:flex items-center gap-3">
             {/* Cart */}
             <Button
               variant="ghost"
@@ -116,12 +116,29 @@ const Navbar = () => {
                 Anmelden
               </Button>
             )}
+          </div>
+
+          {/* Mobile Actions */}
+          <div className="flex md:hidden items-center gap-2">
+            {/* Mobile Cart */}
+            <Button
+              variant="ghost"
+              size="sm"
+              className="relative"
+              onClick={handleCartClick}
+            >
+              <ShoppingCart className="w-5 h-5" />
+              {cartItems > 0 && (
+                <Badge className="absolute -top-2 -right-2 bg-red-500 hover:bg-red-600 min-w-[1.25rem] h-5 flex items-center justify-center text-xs">
+                  {cartItems}
+                </Badge>
+              )}
+            </Button>
 
             {/* Mobile Menu Button */}
             <Button
               variant="ghost"
               size="sm"
-              className="md:hidden"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -142,18 +159,18 @@ const Navbar = () => {
               Restaurants
             </Link>
             <Link 
-              to="/cuisines" 
+              to="/search" 
               className="block text-gray-700 hover:text-orange-600 font-medium py-2 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              Küchen
+              Suchen
             </Link>
             <Link 
-              to="/deals" 
+              to="/reservations" 
               className="block text-gray-700 hover:text-orange-600 font-medium py-2 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              Angebote
+              Reservierungen
             </Link>
             <Link 
               to="/about" 
@@ -163,18 +180,30 @@ const Navbar = () => {
               Über uns
             </Link>
             <hr className="my-3" />
-            <div className="flex flex-col gap-2">
+            {!isLoggedIn && (
               <Button 
                 size="sm" 
-                className="bg-orange-500 hover:bg-orange-600 justify-start"
+                className="bg-orange-500 hover:bg-orange-600 justify-start w-full"
                 onClick={() => {
                   setIsMenuOpen(false);
-                  navigate('/register-restaurant');
+                  handleLoginClick();
                 }}
               >
-                Restaurant registrieren
+                <User className="w-4 h-4 mr-2" />
+                Anmelden
               </Button>
-            </div>
+            )}
+            <Button 
+              size="sm" 
+              variant="outline"
+              className="justify-start w-full"
+              onClick={() => {
+                setIsMenuOpen(false);
+                navigate('/register-restaurant');
+              }}
+            >
+              Restaurant registrieren
+            </Button>
           </div>
         </div>
       )}

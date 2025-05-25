@@ -1,13 +1,13 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Star, Clock, MapPin, ChefHat, Users } from "lucide-react";
+import { Star, Clock, MapPin, ChefHat, Users, Search } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import BottomNavigation from "@/components/BottomNavigation";
 
 // Mock data for restaurants
 const mockRestaurants = [
@@ -90,10 +90,10 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative py-20 px-4 text-center bg-gradient-to-r from-orange-600 to-red-600 text-white">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
+          <h1 className="text-4xl md:text-7xl font-bold mb-6 animate-fade-in">
             Hunger? Wir liefern!
           </h1>
-          <p className="text-xl md:text-2xl mb-8 opacity-90">
+          <p className="text-lg md:text-2xl mb-8 opacity-90">
             Die besten Restaurants in München - jetzt bestellen oder reservieren
           </p>
           
@@ -107,18 +107,22 @@ const Index = () => {
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="flex-1 px-4 py-2 text-gray-800 bg-transparent outline-none"
               />
-              <Button className="rounded-full bg-orange-500 hover:bg-orange-600 px-6">
-                Suchen
+              <Button 
+                className="rounded-full bg-orange-500 hover:bg-orange-600 px-6"
+                onClick={() => navigate('/search')}
+              >
+                <Search className="w-4 h-4 md:hidden" />
+                <span className="hidden md:inline">Suchen</span>
               </Button>
             </div>
           </div>
         </div>
         
         {/* Floating Elements */}
-        <div className="absolute top-20 left-10 animate-bounce">
+        <div className="absolute top-20 left-10 animate-bounce hidden md:block">
           <ChefHat className="w-12 h-12 text-white opacity-20" />
         </div>
-        <div className="absolute bottom-20 right-10 animate-pulse">
+        <div className="absolute bottom-20 right-10 animate-pulse hidden md:block">
           <Users className="w-16 h-16 text-white opacity-20" />
         </div>
       </section>
@@ -133,7 +137,7 @@ const Index = () => {
                 key={cuisine}
                 variant={selectedCuisine === cuisine ? "default" : "outline"}
                 onClick={() => setSelectedCuisine(cuisine)}
-                className={`px-6 py-2 rounded-full transition-all duration-300 ${
+                className={`px-4 md:px-6 py-2 rounded-full transition-all duration-300 text-sm md:text-base ${
                   selectedCuisine === cuisine 
                     ? "bg-orange-500 hover:bg-orange-600 text-white" 
                     : "hover:bg-orange-50 border-orange-200"
@@ -147,13 +151,13 @@ const Index = () => {
       </section>
 
       {/* Restaurants Grid */}
-      <section className="py-12 px-4">
+      <section className="py-12 px-4 pb-20 md:pb-12">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">
             Beliebte Restaurants
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {filteredRestaurants.map((restaurant) => (
               <Card 
                 key={restaurant.id} 
@@ -175,7 +179,7 @@ const Index = () => {
                 
                 <CardHeader className="pb-2">
                   <div className="flex justify-between items-start mb-2">
-                    <CardTitle className="text-xl text-gray-800 group-hover:text-orange-600 transition-colors">
+                    <CardTitle className="text-lg md:text-xl text-gray-800 group-hover:text-orange-600 transition-colors">
                       {restaurant.name}
                     </CardTitle>
                     <div className="flex items-center gap-1">
@@ -271,6 +275,7 @@ const Index = () => {
       </section>
 
       <Footer />
+      <BottomNavigation cartItemCount={3} />
     </div>
   );
 };

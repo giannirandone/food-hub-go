@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -21,6 +20,8 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import BottomNavigation from "@/components/BottomNavigation";
+import PaymentModal from "@/components/PaymentModal";
 
 // Mock restaurant data
 const mockRestaurant = {
@@ -119,6 +120,7 @@ const RestaurantDetail = () => {
   const { toast } = useToast();
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isFavorited, setIsFavorited] = useState(false);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
 
   const addToCart = (item: any) => {
     setCart(prevCart => {
@@ -185,6 +187,26 @@ const RestaurantDetail = () => {
     });
   };
 
+  const handleCheckout = () => {
+    if (cart.length === 0) {
+      toast({
+        title: "Warenkorb leer",
+        description: "Fügen Sie Artikel hinzu, bevor Sie zur Kasse gehen.",
+        variant: "destructive"
+      });
+      return;
+    }
+    setShowPaymentModal(true);
+  };
+
+  const handlePaymentSuccess = () => {
+    setCart([]);
+    toast({
+      title: "Bestellung erfolgreich",
+      description: "Ihre Bestellung wurde aufgegeben und wird bald zubereitet.",
+    });
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
@@ -243,7 +265,7 @@ const RestaurantDetail = () => {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 py-8">
+      <div className="max-w-6xl mx-auto px-4 py-8 pb-20 md:pb-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2">
@@ -424,7 +446,7 @@ const RestaurantDetail = () => {
                     </div>
                     <Button 
                       className="w-full bg-green-600 hover:bg-green-700"
-                      onClick={() => navigate('/checkout')}
+                      onClick={handleCheckout}
                     >
                       Zur Kasse
                     </Button>
@@ -436,7 +458,15 @@ const RestaurantDetail = () => {
         </div>
       </div>
 
+      <PaymentModal
+        open={showPaymentModal}
+        onClose={() => setShowPaymentModal(false)}
+        total={getTotalPrice()}
+        onPaymentSuccess={handlePaymentSuccess}
+      />
+
       <Footer />
+      <BottomNavigation cartItemCount={getTotalItems()} />
     </div>
   );
 };

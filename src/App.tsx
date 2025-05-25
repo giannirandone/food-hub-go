@@ -12,6 +12,8 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import RestaurantDashboard from "./pages/RestaurantDashboard";
 import Reservation from "./pages/Reservation";
+import Search from "./pages/Search";
+import ReservationOverview from "./pages/ReservationOverview";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +26,8 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/reservations" element={<ReservationOverview />} />
           <Route path="/restaurant/:id" element={<RestaurantDetail />} />
           <Route path="/restaurant/:id/reservation" element={<Reservation />} />
           <Route path="/cart" element={<Cart />} />
