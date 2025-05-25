@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -84,11 +85,11 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-red-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative py-20 px-4 text-center bg-gradient-to-r from-orange-600 to-red-600 text-white">
+      <section className="relative py-20 px-4 text-center bg-gradient-to-r from-blue-600 to-purple-600 text-white">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-7xl font-bold mb-6 animate-fade-in">
             Hunger? Wir liefern!
@@ -108,7 +109,7 @@ const Index = () => {
                 className="flex-1 px-4 py-2 text-gray-800 bg-transparent outline-none"
               />
               <Button 
-                className="rounded-full bg-orange-500 hover:bg-orange-600 px-6"
+                className="rounded-full bg-blue-500 hover:bg-blue-600 px-6"
                 onClick={() => navigate('/search')}
               >
                 <Search className="w-4 h-4 md:hidden" />
@@ -139,8 +140,8 @@ const Index = () => {
                 onClick={() => setSelectedCuisine(cuisine)}
                 className={`px-4 md:px-6 py-2 rounded-full transition-all duration-300 text-sm md:text-base ${
                   selectedCuisine === cuisine 
-                    ? "bg-orange-500 hover:bg-orange-600 text-white" 
-                    : "hover:bg-orange-50 border-orange-200"
+                    ? "bg-blue-500 hover:bg-blue-600 text-white" 
+                    : "hover:bg-blue-50 border-blue-200"
                 }`}
               >
                 {cuisine}
@@ -179,7 +180,7 @@ const Index = () => {
                 
                 <CardHeader className="pb-2">
                   <div className="flex justify-between items-start mb-2">
-                    <CardTitle className="text-lg md:text-xl text-gray-800 group-hover:text-orange-600 transition-colors">
+                    <CardTitle className="text-lg md:text-xl text-gray-800 group-hover:text-blue-600 transition-colors">
                       {restaurant.name}
                     </CardTitle>
                     <div className="flex items-center gap-1">
@@ -187,7 +188,7 @@ const Index = () => {
                       <span className="font-bold text-sm">{restaurant.rating}</span>
                     </div>
                   </div>
-                  <CardDescription className="text-orange-600 font-medium">
+                  <CardDescription className="text-blue-600 font-medium">
                     {restaurant.cuisine}
                   </CardDescription>
                 </CardHeader>
@@ -214,7 +215,7 @@ const Index = () => {
                   
                   <div className="flex gap-2">
                     <Button 
-                      className="flex-1 bg-orange-500 hover:bg-orange-600"
+                      className="flex-1 bg-blue-500 hover:bg-blue-600"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleQuickOrder(restaurant.name);
@@ -224,7 +225,7 @@ const Index = () => {
                     </Button>
                     <Button 
                       variant="outline" 
-                      className="flex-1 border-orange-500 text-orange-600 hover:bg-orange-50"
+                      className="flex-1 border-blue-500 text-blue-600 hover:bg-blue-50"
                       onClick={(e) => {
                         e.stopPropagation();
                         navigate(`/restaurant/${restaurant.id}/reservation`);
@@ -248,7 +249,7 @@ const Index = () => {
       </section>
 
       {/* Quick Actions */}
-      <section className="py-16 bg-gradient-to-r from-orange-100 to-red-100">
+      <section className="py-16 bg-gradient-to-r from-blue-100 to-purple-100">
         <div className="max-w-4xl mx-auto text-center px-4">
           <h2 className="text-3xl font-bold mb-8 text-gray-800">Restaurant-Betreiber?</h2>
           <p className="text-lg text-gray-600 mb-8">
@@ -257,7 +258,7 @@ const Index = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
-              className="bg-orange-600 hover:bg-orange-700 px-8 py-3"
+              className="bg-blue-600 hover:bg-blue-700 px-8 py-3"
               onClick={() => navigate('/register-restaurant')}
             >
               Restaurant registrieren
@@ -265,7 +266,7 @@ const Index = () => {
             <Button 
               size="lg" 
               variant="outline" 
-              className="border-orange-600 text-orange-600 hover:bg-orange-50 px-8 py-3"
+              className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3"
               onClick={() => navigate('/restaurant-login')}
             >
               Restaurant Login

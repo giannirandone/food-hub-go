@@ -32,18 +32,18 @@ const BottomNavigation = ({ cartItemCount = 0 }: BottomNavigationProps) => {
                 variant="ghost"
                 size="sm"
                 className={`flex flex-col items-center p-2 h-auto ${
-                  isActive ? "text-orange-600" : "text-gray-600"
+                  isActive ? "text-blue-600" : "text-gray-600"
                 }`}
               >
                 <div className="relative">
-                  <Icon className={`w-5 h-5 ${isActive ? "text-orange-600" : "text-gray-600"}`} />
+                  <Icon className={`w-5 h-5 ${isActive ? "text-blue-600" : "text-gray-600"}`} />
                   {item.path === "/cart" && cartItemCount > 0 && (
                     <Badge className="absolute -top-2 -right-2 bg-red-500 hover:bg-red-600 min-w-[1.25rem] h-5 flex items-center justify-center text-xs">
                       {cartItemCount}
                     </Badge>
                   )}
                 </div>
-                <span className={`text-xs mt-1 ${isActive ? "text-orange-600" : "text-gray-600"}`}>
+                <span className={`text-xs mt-1 ${isActive ? "text-blue-600" : "text-gray-600"}`}>
                   {item.label}
                 </span>
               </Button>

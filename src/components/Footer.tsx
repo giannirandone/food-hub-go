@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-2 text-2xl font-bold text-orange-500 mb-4">
+            <div className="flex items-center gap-2 text-2xl font-bold text-blue-500 mb-4">
               <ChefHat className="w-8 h-8" />
               <span>FoodHub</span>
             </div>
@@ -18,13 +18,13 @@ const Footer = () => {
               Entdecken Sie die besten Restaurants in Ihrer Nähe und genießen Sie köstliche Mahlzeiten.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="text-gray-400 hover:text-orange-500 transition-colors">
+              <a href="#" className="text-gray-400 hover:text-blue-500 transition-colors">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-orange-500 transition-colors">
+              <a href="#" className="text-gray-400 hover:text-blue-500 transition-colors">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-orange-500 transition-colors">
+              <a href="#" className="text-gray-400 hover:text-blue-500 transition-colors">
                 <Twitter className="w-5 h-5" />
               </a>
             </div>
@@ -32,7 +32,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-bold text-lg mb-4 text-orange-500">Schnelllinks</h3>
+            <h3 className="font-bold text-lg mb-4 text-blue-500">Schnelllinks</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-gray-300 hover:text-white transition-colors">
@@ -59,7 +59,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-bold text-lg mb-4 text-orange-500">Kontakt</h3>
+            <h3 className="font-bold text-lg mb-4 text-blue-500">Kontakt</h3>
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-gray-300">
                 <Phone className="w-4 h-4" />
